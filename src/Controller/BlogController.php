@@ -25,6 +25,12 @@ class BlogController extends AbstractController
          * ->findAll() przepisałem z kursu */
         $articles = $this->articleRepository->findAll();
 
+        /**dd() dump and die
+         *      Po wykonaniu w oknie wyświetli nam się to co chcemy, ale strona nie będzie się ładować         */
+        // dd($articles);
+        /**dump() do profilera*/
+        dump($articles);
+
         return new Response(content: '<h1>Tu będą wyświetlane artykuły</h1>');
     }
 }
