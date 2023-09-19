@@ -2,6 +2,8 @@
 
 /** 1) Ustawiamy namespace
  *      By można było odszukać kontroler
+ *  ---
+ *  Namespace pomaga Symfony "zorganizować się" i określić co do czego służy
  */
 namespace App\Controller;
 
