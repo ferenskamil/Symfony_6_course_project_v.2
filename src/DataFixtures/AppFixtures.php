@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\AboutMeInfo;
 use App\Entity\Article;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -26,6 +27,17 @@ class AppFixtures extends Fixture
             $article->setAddedAt(new \DateTime());
 
             $manager->persist($article);
+        }
+
+        $aboutMeData = [
+            'imie' => 'Kamil',
+            'nazwisko' => 'Ferens',
+            'opis' => 'Jestem początkującym programistą.',
+            'miasto' => 'Wrocław'
+        ];
+        foreach ($aboutMeData as $key => $value) {
+            $info = new AboutMeInfo(key: $key , value: $value);
+            $manager->persist($info);
         }
 
         $manager->flush();
