@@ -39,4 +39,12 @@ class BlogController extends AbstractController
             view: 'articles.html.twig',
             parameters: $params);
     }
+
+    #[Route(path: '/article/{articleId}' , name: 'blog-article')]
+    public function showArticle(Article $articleId) : Response
+    {
+
+        dd($articleId);
+        // return new Response(content: $articleId);
+    }
 }
