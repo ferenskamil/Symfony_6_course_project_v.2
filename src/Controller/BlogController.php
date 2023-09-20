@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ class BlogController extends AbstractController
     }
 
     #[Route(path: '/articles' , name: 'blog-articles')]
-    public function mainPage() : Response
+    public function showArticles() : Response
     {
         /**
          * ->findAll() przepisałem z kursu */
@@ -31,9 +32,13 @@ class BlogController extends AbstractController
         /**dump() do profilera*/
         dump($articles);
 
-        $params = [
-            'articles' => $articles,
-        ];
+        foreach ($articles as $article) {
+            $params['articles'][] = [
+                'title' => $article->getTitle(),
+                'content' => substr($article->getContent() , 0 , 30) . '...',
+                'link' => "/article/{$article->getId()}"
+            ];
+        }
 
         return $this->render(
             view: 'articles.html.twig',
