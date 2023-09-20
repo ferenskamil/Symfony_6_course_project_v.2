@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Service\ArticleProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +15,8 @@ class BlogController extends AbstractController
     /** Na kursie opisali to jako wstrzykiwanie zależności.
      * Wstrzyknęliśmy usługę ArticleRepository do kontorlera i możemy z niej korzystać */
     public function __construct(
-        private ArticleRepository $articleRepository
+        private ArticleRepository $articleRepository,
+        private ArticleProvider $articleProvider
     )
     {
     }
@@ -22,23 +24,9 @@ class BlogController extends AbstractController
     #[Route(path: '/articles' , name: 'blog-articles')]
     public function showArticles() : Response
     {
-        /**
-         * ->findAll() przepisałem z kursu */
-        $articles = $this->articleRepository->findAll();
+        $articles = $this->articleRepository->findAll() ?? [];
 
-        /**dd() dump and die
-         *      Po wykonaniu w oknie wyświetli nam się to co chcemy, ale strona nie będzie się ładować         */
-        // dd($articles);
-        /**dump() do profilera*/
-        dump($articles);
-
-        foreach ($articles as $article) {
-            $params['articles'][] = [
-                'title' => $article->getTitle(),
-                'content' => substr($article->getContent() , 0 , 30) . '...',
-                'link' => "article/{$article->getId()}"
-            ];
-        }
+        if ($articles) $params = $this->articleProvider->transformDataForTwig($articles);
 
         return $this->render(
             view: 'blog/articles.html.twig',
