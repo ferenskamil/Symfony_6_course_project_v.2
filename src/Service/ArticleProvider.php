@@ -12,7 +12,8 @@ class ArticleProvider
             $transformedData['articles'][] = [
                 'title' => $article->getTitle(),
                 'content' => substr($article->getContent() , 0 , 30) . '...',
-                'link' => "article/{$article->getId()}"
+                'link' => "article/{$article->getId()}",
+                'addedAt' => $article->getAddedAt()
             ];
         }
 
