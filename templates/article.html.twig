@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html.twig" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ article.title}}</title>
-</head>
+{% block title %}
+{{ article.title }}
+{% endblock %}
 
-<body>
-    <h1>{{ article.title}}</h1>
-    <div>
-        {{ article.content }}
-    </div>
-</body>
-
-</html>
+{% block body %}
+<h1>{{ article.title}}</h1>
+<div>
+    {{ article.content }}
+</div>
+{% endblock %}
