@@ -4,6 +4,19 @@
 
 {% block body %}
 <h1>Strona Główna</h1>
+<nav>
+    <ul>
+        <a href="articles">
+            <li>Artykuły</li>
+        </a>
+        <a href="/about-me">
+            <li>O mnie</li>
+        </a>
+        <a href="#">
+            <li>Kontakt</li>
+        </a>
+    </ul>
+</nav>
 <h2>Ostatni Artykuł</h2>
 <a href="article/{{ lastArticle.id }}">
     <strong>{{ lastArticle.title }}</strong>
