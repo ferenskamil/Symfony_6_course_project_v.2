@@ -36,7 +36,7 @@ class BlogController extends AbstractController
             $params['articles'][] = [
                 'title' => $article->getTitle(),
                 'content' => substr($article->getContent() , 0 , 30) . '...',
-                'link' => "/article/{$article->getId()}"
+                'link' => "article/{$article->getId()}"
             ];
         }
 
@@ -45,11 +45,13 @@ class BlogController extends AbstractController
             parameters: $params);
     }
 
-    #[Route(path: '/article/{articleId}' , name: 'blog-article')]
-    public function showArticle(Article $articleId) : Response
+    #[Route(path: '/article/{article}' , name: 'blog-article')]
+    public function showArticle(Article $article) : Response
     {
+        $params = [
+            'article' => $article
+        ];
 
-        dd($articleId);
-        // return new Response(content: $articleId);
+        return $this->render('article.html.twig' , $params);
     }
 }
