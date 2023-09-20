@@ -24,8 +24,9 @@ class BlogController extends AbstractController
     #[Route(path: '/articles' , name: 'blog-articles')]
     public function showArticles() : Response
     {
-        $articles = $this->articleRepository->findAll() ?? [];
+        $articles = $this->articleRepository->findAll();
 
+        $params = [];
         if ($articles) $params = $this->articleProvider->transformDataForTwig($articles);
 
         return $this->render(

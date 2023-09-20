@@ -6,7 +6,7 @@ class ArticleProvider
 {
     public function transformDataForTwig(array $articles) : array
     {
-        $transformedData = [];
+        $transformedData['articles'] = [];
 
         foreach ($articles as $article) {
             $transformedData['articles'][] = [
