@@ -9,6 +9,12 @@
 
 <body>
     <h1>Witam Cię w moich artykułach!</h1>
+    <div>
+        {% for article in articles %}
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.content }}</p>
+        {% endfor %}
+    </div>
 </body>
 
 </html>
