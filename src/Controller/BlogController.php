@@ -31,6 +31,7 @@ class BlogController extends AbstractController
         /**dump() do profilera*/
         dump($articles);
 
-        return new Response(content: '<h1>Tu będą wyświetlane artykuły</h1>');
+        // return new Response(content: '<h1>Tu będą wyświetlane artykuły</h1>');
+        return $this->render(view: 'test.html.twig');
     }
 }
