@@ -47,4 +47,13 @@ class Article
 
         return $this;
     }
+
+    public function __toString() : string
+    {
+        return <<<HTML
+            <h2>This is example use of magic method:</h2>
+            <p><b>{$this->getTitle()}</b></p>
+            <p>{$this->getContent()}</p>
+        HTML;
+    }
 }
