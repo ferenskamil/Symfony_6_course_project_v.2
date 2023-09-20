@@ -21,6 +21,24 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    public function getLastArticle() : ?Article
+    {
+        /** To nam powinno zwrócić całą tabelę, do której jest przypisane to repozytorium
+         * Jako parametr ustawiamy 'alias' który jest identycznym aliasem jak w SQL i oznacza
+         * jak chcemy się odnosić do omawianej tabeli. */
+        $queryBuilder = $this->createQueryBuilder(alias: 'a');
+
+        /** Posortuj wyniki */
+        $queryBuilder->orderBy('a.addedAt' , 'DESC');
+
+        /** Wybierz pierwszy */
+        $queryBuilder->setMaxResults(1);
+
+        /** Wykonaj i zwróć zapytanie */
+        // return $queryBuilder->getQuery()->execute();
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */

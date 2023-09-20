@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Strona Główna{% endblock %}
+
+{% block body %}
+<h1>Strona Główna</h1>
+<h2>Ostatni Artykuł</h2>
+<a href="article/{{ lastArticle.id }}">
+    <strong>{{ lastArticle.title }}</strong>
+    <p>{{ lastArticle.content | slice(0, 200) ~ '...' }}</p>
+</a>
+{% endblock %}
