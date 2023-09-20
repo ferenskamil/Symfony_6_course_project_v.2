@@ -41,7 +41,7 @@ class BlogController extends AbstractController
         }
 
         return $this->render(
-            view: 'articles.html.twig',
+            view: 'blog/articles.html.twig',
             parameters: $params);
     }
 
@@ -52,6 +52,6 @@ class BlogController extends AbstractController
             'article' => $article
         ];
 
-        return $this->render('article.html.twig' , $params);
+        return $this->render('blog/article.html.twig' , $params);
     }
 }
