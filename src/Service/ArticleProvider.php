@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Article;
 use App\Service\ImageProvider;
 
 class ArticleProvider
@@ -17,18 +18,25 @@ class ArticleProvider
         $transformedData['articles'] = [];
 
         foreach ($articles as $article) {
-
-            $images = $article->getImages()->toArray();
-
-            $transformedData['articles'][] = [
-                'title' => $article->getTitle(),
-                'content' => substr($article->getContent() , 0 , 30) . '...',
-                'link' => "article/{$article->getId()}",
-                'addedAt' => $article->getAddedAt(),
-                'images' => $this->imageProvider->transformDataForTwig($images)
-            ];
+            $transformedData['articles'][] = $this->prepareOneArticle($article , true);
         }
 
         return $transformedData;
+    }
+
+    public function prepareOneArticle(Article $article , bool $shortenContent = false) : array
+    {
+        $images = $article->getImages()->toArray();
+
+        $content = $article->getContent();
+        if ($shortenContent) $content = substr($content, 0, 30);
+
+        return [
+            'title' => $article->getTitle(),
+            'content' => $content,
+            'link' => "article/{$article->getId()}",
+            'addedAt' => $article->getAddedAt(),
+            'images' => $this->imageProvider->transformDataForTwig($images)
+        ];
     }
 }

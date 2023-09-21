@@ -12,13 +12,6 @@ Artykuły
         </a>
     </ul>
 </nav>
-
-{% for article in articles %}
-{% for img in article.images %}
-<img src="{{ img.path }}" alt="{{ img.alt }}">
-{% endfor %}
-{% endfor %}
-
 <h1>Witam Cię w moich artykułach!</h1>
 <div>
     {% for article in articles %}
@@ -28,6 +21,7 @@ Artykuły
             {{ article.addedAt | date("m/d/Y") }}
         </p>
         <p>{{ article.content }}</p>
+        <img src="{{ article.images | first.path }}" alt="{{ article.images | first.alt }}" style="height: 100px">
     </a>
     {% endfor %}
 </div>

@@ -12,8 +12,12 @@
         </a>
     </ul>
 </nav>
+<img src="{{ article.images | first.path }}" alt="{{ article.images | first.alt }}" style="height: 400px">
 <h1>{{ article.title}}</h1>
 <div>
     {{ article.content }}
 </div>
+{% for img in article.images[1:] %}
+<img src="{{ img.path }}" alt="{{ img.alt }}" style="height: 100px">
+{% endfor %}
 {% endblock %}

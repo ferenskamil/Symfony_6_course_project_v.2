@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use App\Service\ArticleProvider;
+use App\Service\ImageProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +17,8 @@ class BlogController extends AbstractController
      * Wstrzyknęliśmy usługę ArticleRepository do kontorlera i możemy z niej korzystać */
     public function __construct(
         private ArticleRepository $articleRepository,
-        private ArticleProvider $articleProvider
+        private ArticleProvider $articleProvider,
+        private ImageProvider $imageProvider
     )
     {
     }
@@ -38,9 +40,14 @@ class BlogController extends AbstractController
     public function showArticle(Article $article) : Response
     {
         $params = [
-            'article' => $article
+            'article' => $this->articleProvider->prepareOneArticle($article)
         ];
 
-        return $this->render('blog/article.html.twig' , $params);
+        dump($params);
+
+        return $this->render(
+            view: 'blog/article.html.twig',
+            parameters: $params
+        );
     }
 }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 class Image
 {
-    public const PATH_TO_IMAGES = 'images/';
+    public const PATH_TO_IMAGES = '/images/';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
