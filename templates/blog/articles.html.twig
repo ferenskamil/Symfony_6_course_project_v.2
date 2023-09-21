@@ -12,6 +12,13 @@ Artykuły
         </a>
     </ul>
 </nav>
+
+{% for article in articles %}
+{% for img in article.images %}
+<img src="{{ img.path }}" alt="{{ img.alt }}">
+{% endfor %}
+{% endfor %}
+
 <h1>Witam Cię w moich artykułach!</h1>
 <div>
     {% for article in articles %}
