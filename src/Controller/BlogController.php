@@ -43,8 +43,6 @@ class BlogController extends AbstractController
             'article' => $this->articleProvider->prepareOneArticle($article)
         ];
 
-        dump($params);
-
         return $this->render(
             view: 'blog/article.html.twig',
             parameters: $params

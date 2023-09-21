@@ -18,8 +18,9 @@
     </ul>
 </nav>
 <h2>Ostatni Artykuł</h2>
-<a href="article/{{ lastArticle.id }}">
+{% include "blog/_article_teaser.html.twig" with {article: lastArticle} %}
+{# <a href="article/{{ lastArticle.id }}">
     <strong>{{ lastArticle.title }}</strong>
     <p>{{ lastArticle.content | slice(0, 200) ~ '...' }}</p>
-</a>
+</a> #}
 {% endblock %}

@@ -15,14 +15,7 @@ Artykuły
 <h1>Witam Cię w moich artykułach!</h1>
 <div>
     {% for article in articles %}
-    <a href="{{ article.link }}" target="_blank">
-        <h2>{{ article.title }}</h2>
-        <p style="font-size: 0.8rem">
-            {{ article.addedAt | date("m/d/Y") }}
-        </p>
-        <p>{{ article.content }}</p>
-        <img src="{{ article.images | first.path }}" alt="{{ article.images | first.alt }}" style="height: 100px">
-    </a>
+    {% include "blog/_article_teaser.html.twig" with {article: article} %}
     {% endfor %}
 </div>
 {% endblock%}
