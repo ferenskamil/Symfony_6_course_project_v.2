@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kontakt!{% endblock %}
+
+{% block body %}
+<nav>
+    <ul>
+        <a href="/">
+            <li>Main Page</li>
+        </a>
+    </ul>
+</nav>
+<h1>Informacje o mnie</h1>
+{% for item in contactInfo %}
+<p><b>{{ item.key }}:</b> {{ item.value }}</p>
+{% endfor %}
+
+
+{% endblock %}

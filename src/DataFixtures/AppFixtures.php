@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\AboutMeInfo;
 use App\Entity\Article;
+use App\Entity\Contact;
 use App\Entity\Image;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -116,6 +117,19 @@ class AppFixtures extends Fixture
         ];
         foreach ($aboutMeData as $key => $value) {
             $info = new AboutMeInfo(key: $key , value: $value);
+            $manager->persist($info);
+        }
+
+        $contactData = [
+            'Miasto' => 'Wrocław',
+            'Telefon' => '+48 123 456 789',
+            'Email' => 'mr.kaam@gmail.com',
+            'LinkedIn' => 'www.linkedin.com/kamilferens'
+        ];
+        foreach ($contactData as $key => $value) {
+            $info = new Contact();
+            $info->setKey($key);
+            $info->setValue($value);
             $manager->persist($info);
         }
 
