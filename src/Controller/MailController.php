@@ -6,12 +6,14 @@ use App\Service\MailProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
 
 class MailController extends AbstractController
 {
 
     public function __construct(
-        private MailProvider $mailProvider
+        private MailProvider $mailProvider,
+        private MailerInterface $mailerInterface
     )
     {
     }
@@ -19,15 +21,20 @@ class MailController extends AbstractController
     #[Route('/mail', name: 'register-welcome-mail')]
     public function index(): Response
     {
-        /** kontroloer decyduje o tym, żeby wysłac maila i więcej go nie interesuje */
-        $this->mailProvider->sendWelcomeMail();
+        /** Get info from DB - here is test example */
+        $userName = 'Kamil879';
+        $userEmail = 'testowedev123@gmail.com';
 
-        /** kontroloer przekazuje to co ma być wyświetlone użytkownikowi  */
+        /** Send welcome email*/
+        $this->mailProvider->sendWelcomeMail($this->mailerInterface, $userName, $userEmail);
+
+        /** Pass parameters to display*/
         $params = [
             'controller_name' => 'MailController',
             'html' => $this->mailProvider->getHtmlWelcomeMail()
         ];
 
+        /** Render page */
         return $this->render('mail/index.html.twig', $params);
     }
 }
