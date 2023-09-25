@@ -28,6 +28,12 @@ security:
                 login_path: app_login
                 check_path: app_login
 
+            logout:
+                path: app_logout
+
+                # where to redirect after logout
+                target: app_login
+
         secured_area:
             # ...
             form_login:
