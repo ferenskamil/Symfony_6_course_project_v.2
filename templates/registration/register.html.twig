@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zarejestruj się!{% endblock %}
+
+{% block body %}
+<h1>Zarejestruj się!</h1>
+
+<p style="color: red; font-size: 0.8rem">{{ form_errors(registrationForm) }}</p>
+
+{{ form_start(registrationForm) }}
+{{ form_row(registrationForm.username , { label: 'Username'}) }}
+{{ form_row(registrationForm.email , { label: 'Email'}) }}
+{{ form_row(registrationForm.plainPassword, { label: 'Password' }) }}
+{{ form_row(registrationForm.agreeTerms) }}
+
+<button type="submit" class="btn">Register</button>
+{{ form_end(registrationForm) }}
+{% endblock %}
