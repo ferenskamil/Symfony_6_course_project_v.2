@@ -1,16 +1,19 @@
 <nav>
     <ul>
-        <a href="/">
+        <a href="{{ path('main-page') }}">
             <li>Strona główna</li>
         </a>
-        <a href="articles">
+        <a href="{{ path('blog-articles') }}">
             <li>Artykuły</li>
         </a>
-        <a href="/about-me">
+        <a href="{{ path('about-me') }}">
             <li>O mnie</li>
         </a>
-        <a href="/contact">
+        <a href="{{ path('blog-contact') }}">
             <li>Kontakt</li>
+        </a>
+        <a href="{{ path('app_register') }}">
+            <li>Rejestracja</li>
         </a>
     </ul>
 </nav>
